@@ -21,9 +21,9 @@ namespace BookStore.Data
 
             var books = new[]
             {
-                new BookDto { Id = 1, Title = "Harry Potter", Price = 19.99m, AuthorId = 1 },
-                new BookDto { Id = 2, Title = "1984", Price = 9.99m, AuthorId = 2 },
-                new BookDto { Id = 3, Title = "Animal Farm", Price = 7.99m, AuthorId = 2 }
+                new Book { Id = 1, Title = "Harry Potter", Price = 19.99m, AuthorId = 1 },
+                new Book { Id = 2, Title = "1984", Price = 9.99m, AuthorId = 2 },
+                new Book { Id = 3, Title = "Animal Farm", Price = 7.99m, AuthorId = 2 }
             };
 
             modelBuilder.Entity<Author>().HasData(authors);

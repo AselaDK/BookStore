@@ -20,6 +20,23 @@ builder.Services.AddDbContext<BookStoreContext>(options =>
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp",
+        policy =>
+        {
+            // Replace with your Angular app's URL
+            // For development: http://localhost:4200
+            // For production: your domain
+            policy.WithOrigins("http://localhost:4200")
+                  .AllowAnyMethod()
+                  .AllowAnyHeader()
+                  .AllowCredentials();
+
+            // If you have multiple environments, you can add them:
+            // .WithOrigins("http://localhost:4200", "https://yourdomain.com")
+        });
+});
 
 var app = builder.Build();
 
@@ -31,6 +48,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAngularApp");
 
 app.UseAuthorization();
 
